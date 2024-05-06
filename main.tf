@@ -1,3 +1,21 @@
+terraform {
+  required_version = ">=0.13.1"
+  required_providers {
+    aws = ">=5.47.0"
+    local = ">=2.5.1"
+  }
+
+  backend "s3" {
+    bucket = "bucket"
+    key = "terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+
 module "new-vpc" {
   source = "./modules/vpc"
   prefix = var.prefix
